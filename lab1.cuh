@@ -18,13 +18,14 @@
 	
 	#define VECTOR_SIZE (1 << 15)
 
-	#define MC_SAMPLE_SIZE		1e6
-	#define MC_ITER_COUNT		32
+	#define MC_SAMPLE_SIZE     1e7             // 10 million samples per thread
+	#define MC_ITER_COUNT      32
 
-	#define WARP_SIZE			32
-	#define SAMPLE_SIZE			MC_SAMPLE_SIZE
-	#define GENERATE_BLOCKS		1024
-	#define REDUCE_SIZE			32
-	#define REDUCE_BLOCKS		(GENERATE_BLOCKS / REDUCE_SIZE)
+	#define WARP_SIZE          32
+	#define SAMPLE_SIZE        MC_SAMPLE_SIZE
+	#define GENERATE_BLOCKS    65536           // Total number of generation threads
+	#define REDUCE_SIZE        1024             // Each reduction block reduces 64 elements
+	#define REDUCE_BLOCKS      (GENERATE_BLOCKS / REDUCE_SIZE)  // 65536 / 256 = 256
+
 
 #endif
